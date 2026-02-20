@@ -642,15 +642,3 @@ export default function UltraAIDeliveryHubUI() {
         </AppShell>
     );
 }
-                    <div className="p-2 rounded-md bg-gradient-to-br from-sky-500 to-blue-500 text-xs">Engineer</div>
-                    <ArrowRight size={14} />
-                    <div className="p-2 rounded-md bg-gradient-to-br from-emerald-400 to-teal-500 text-xs">Secure</div>
-                </div>
-
-                <div className="mt-2 h-2 bg-white/10 rounded-full overflow-hidden">
-                    <motion.div className="h-full bg-cyan-400" initial={{ width: 0 }} animate={{ width: "100%" }} transition={{ duration: mode === "Agile" ? 4 : 6 }} />
-                </div>
-            </div>
-        </div>
-    );
-}
