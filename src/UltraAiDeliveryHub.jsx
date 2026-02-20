@@ -18,7 +18,6 @@ import {
     Moon,
     X,
     Activity,
-    ArrowRight,
 } from "lucide-react";
 
 /**
