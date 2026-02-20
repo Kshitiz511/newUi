@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Play, MessageSquare, LifeBuoy, Shield, Activity, X, 
-  Send, ShieldAlert, Terminal, Cpu
+  ShieldAlert, Terminal
 } from "lucide-react";
 
 /* -------------------------------------------------------------------------- */

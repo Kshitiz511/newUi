@@ -17,8 +17,6 @@ import {
     Sun,
     Moon,
     X,
-    Shield,
-    BarChart3,
     Activity,
     ArrowRight,
 } from "lucide-react";
@@ -65,25 +63,6 @@ const cannedOutputs = {
     default: "Simulated output for agent - summarizing key points and action items.",
 };
 
-/* ---------- Small helpers ---------- */
-function Sparkline({ data = [], width = 300, height = 48 }) {
-    if (!data || data.length === 0) return null;
-    const max = Math.max(...data);
-    const min = Math.min(...data);
-    const points = data
-        .map((v, i) => {
-            const x = (i / (data.length - 1)) * width;
-            const y = height - ((v - min) / (max - min || 1)) * height;
-            return `${x},${y}`;
-        })
-        .join(" ");
-    return (
-        <svg width={width} height={height} className="block">
-            <polyline fill="none" stroke="currentColor" strokeWidth="2" points={points} strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-    );
-}
-
 /* ---------- Main component ---------- */
 export default function UltraAIDeliveryHubUI() {
     const [activePhase, setActivePhase] = useState("Discover");
@@ -99,18 +78,10 @@ export default function UltraAIDeliveryHubUI() {
     const [paletteQuery, setPaletteQuery] = useState("");
     const paletteRef = useRef(null);
 
-    const [projectMode, setProjectMode] = useState(null);
-
-    // monitoring fake stats
-    const [tokensConsumed] = useState(128000);
-    const [blockedCalls] = useState(42);
-    const monitoringSeries = [12, 18, 9, 22, 28, 21, 17, 26, 22, 19, 24];
-
     // SVG path refs for animated dot
     const pathRef = useRef(null);
     const dotRef = useRef(null);
     const requestRef = useRef(null);
-    const startTimeRef = useRef(null);
 
     // keep dark styles for components; background tone is handled separately
     useEffect(() => {
@@ -671,33 +642,6 @@ export default function UltraAIDeliveryHubUI() {
         </AppShell>
     );
 }
-
-/* small subcomponents */
-function Card({ title, subtitle, status }) {
-    const statusColor = status === "Active" || status === "On" ? "text-emerald-300" : "text-amber-300";
-    return (
-        <div className="p-3 rounded-md bg-white/8 flex items-center justify-between">
-            <div>
-                <div className="font-medium">{title}</div>
-                <div className="text-xs opacity-60">{subtitle}</div>
-            </div>
-            <div className={`${statusColor} font-semibold`}>{status}</div>
-        </div>
-    );
-}
-
-function ProjectFlow({ mode }) {
-    return (
-        <div>
-            <div className="text-sm opacity-70 mb-3">Flow preview</div>
-            <div className="rounded-lg p-3 bg-white/5">
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                    <div className="p-2 rounded-md bg-white/8 text-xs">Project Management</div>
-                    <ArrowRight size={14} />
-                    <div className="p-2 rounded-md bg-gradient-to-br from-indigo-500 to-cyan-400 text-xs">Discover</div>
-                    <ArrowRight size={14} />
-                    <div className="p-2 rounded-md bg-gradient-to-br from-pink-500 to-rose-400 text-xs">Design</div>
-                    <ArrowRight size={14} />
                     <div className="p-2 rounded-md bg-gradient-to-br from-sky-500 to-blue-500 text-xs">Engineer</div>
                     <ArrowRight size={14} />
                     <div className="p-2 rounded-md bg-gradient-to-br from-emerald-400 to-teal-500 text-xs">Secure</div>
