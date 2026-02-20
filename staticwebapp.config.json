@@ -1,0 +1,22 @@
+{
+  "routes": [
+    {
+      "route": "/api/*",
+      "proxy": {
+        "backendUri": "https://kshitijbackend123-fkb4ckdmdwd7ewc7.canadacentral-01.azurewebsites.net/api"
+      }
+    },
+    {
+      "route": "/*",
+      "serve": "/index.html",
+      "statusCode": 200
+    }
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html",
+    "exclude": ["/images/*", "*.{css,scss,gif,ico,jpg,jpeg,js,jsmap,json,png,svg,webp,woff,woff2}"]
+  },
+  "mimeTypes": {
+    ".json": "text/json"
+  }
+}
